@@ -8,19 +8,16 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const { login } = useAuth();
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Burada API çağrısı yaparak kimlik doğrulama işlemi uygulanabilir.
-    console.log({ email, password, rememberMe });
-    // Başarılı girişte auth state güncelle
-    login();
-    // Korumalı sayfalara yönlendirme örneği:
-    router.push("/protected");
-  };
+  const { login } = useAuth();
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await login(email, password);
+    router.push("/anasayfa"); 
+  };
+  
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
       {/* E-posta ve şifre input alanları */}

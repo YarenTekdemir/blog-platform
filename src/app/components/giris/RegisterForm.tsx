@@ -1,6 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation"; 
 import React, { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 const RegisterForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -8,14 +10,19 @@ const RegisterForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const { register } = useAuth();
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Gerçek uygulamada burada API çağrısı yaparak kayıt işlemi yapılır.
-    console.log({ username, email, password, confirmPassword, agreeTerms });
-    // Kayıt sonrası kullanıcıyı giriş sayfasına yönlendirmek için yönlendirme yapılabilir.
-    // Örneğin: router.push("/login");
+    if (password !== confirmPassword) return alert("Şifreler eşleşmiyor");
+  
+    console.log("Kayıt işlemi başlıyor..."); // 👈 ekle bunu
+    await register({ username, email, password });
+    router.push("/anasayfa");
   };
+  
+  
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

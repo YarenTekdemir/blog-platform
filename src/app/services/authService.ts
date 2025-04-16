@@ -1,4 +1,4 @@
-// src/service/authService.ts
+// src/services/authService.ts
 import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:8000/api";
@@ -8,6 +8,7 @@ export const registerUser = async (userData: {
   email: string;
   password: string;
 }) => {
+  console.log("API'ye kayıt isteği gönderiliyor", userData);
   return axios.post(`${BASE_URL}/auth/register`, userData);
 };
 
