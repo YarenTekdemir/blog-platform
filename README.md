@@ -4,6 +4,8 @@
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![image](https://github.com/user-attachments/assets/228c10cd-7e09-408d-a9c8-ee9bf5dc5276)
+
 
 ## Getting Started
 
